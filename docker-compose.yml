@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  python-tests:
+    build:
+      context: ./python/
+      dockerfile: Dockerfile
+    image: local/python-tests
+    container_name: python-tests
+    command: python run_all_test.py
+    working_dir: /app
+    restart: "no"
+
+  js-tests:
+    build:
+      context: ./javascript
+      dockerfile: Dockerfile
+    image: local/js-tests
+    container_name: js-tests
+    command:
+    working_dir: /app
+    restart: "no"
