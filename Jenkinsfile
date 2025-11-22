@@ -12,7 +12,11 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/krahuz/codewars.git'
+                git(
+                    branch: 'main',
+                    url: 'https://github.com/krahuz/codewars.git',
+                    credentialsId: 'github-token'
+                )
             }
         }
 
@@ -21,7 +25,7 @@ pipeline {
                 sh '''
                 docker run --rm \
                     -v $PWD:/app \
-                    krahuz/codewars:python-v1 \
+                    krahuz/codewars:python-v2 \
                     python run_all_test.py
                 '''
             }
@@ -32,7 +36,7 @@ pipeline {
                 sh '''
                 docker run --rm \
                     -v $PWD:/app \
-                    krahuz/codewars:js-v1 \
+                    krahuz/codewars:js-v2 \
                     npx mocha test
                 '''
             }
