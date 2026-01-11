@@ -1,5 +1,6 @@
 package katas;
 
+
 public class ConsecutiveString {
 
     public static String longestConsec(String[] strarr, int k) {
